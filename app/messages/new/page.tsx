@@ -8,7 +8,12 @@ export default function NewMessagePage() {
     "use server";
 
     const message = formData.get("message");
-    addMessage(message);
+
+    if (typeof message !== "string") {
+      throw new Error("Invalid message");
+    }
+
+    addMessage({ message });
     revalidatePath("/messages");
 
     redirect("/messages");
