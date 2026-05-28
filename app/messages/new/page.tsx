@@ -1,7 +1,5 @@
 import { redirect } from "next/navigation";
-
 import { addMessage } from "@/lib/messages";
-import { revalidateTag } from "next/cache";
 
 export default function NewMessagePage() {
   async function createMessage(formData: FormData) {
@@ -14,7 +12,6 @@ export default function NewMessagePage() {
     }
 
     addMessage({ message });
-    revalidateTag("msg", "max");
     redirect("/messages");
   }
 
