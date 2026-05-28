@@ -1,12 +1,11 @@
+import { getMessages } from "@/lib/messages";
+
 type MessagesLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function MessagesLayout({
-  children,
-}: MessagesLayoutProps) {
-  const response = await fetch("http://localhost:8080/messages");
-  const messages = await response.json();
+export default function MessagesLayout({ children }: MessagesLayoutProps) {
+  const messages = getMessages();
   const totalMessages = messages.length;
 
   return (
